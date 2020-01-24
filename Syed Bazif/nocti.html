@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    
+    </style>
+
+    <script>
+        var build="";
+        var buildP="";
+        var itemSold=0;
+        var companyProfit=0;
+        
+        
+
+        function buy(){
+            var name = document.getElementById("name").value;
+            var cd1Qty = document.getElementById("cd1Qty").value;
+            var cd2Qty = document.getElementById("cd2Qty").value;
+            var cd3Qty = document.getElementById("cd3Qty").value;
+            var shipping = document.getElementById("shipping").value;
+            var output =document.getElementById("output");
+            //var profit =document.getElementById("profit");
+            
+            
+
+            var cd1Total = 13.99*cd1Qty;
+            var cd2Total = 37.99*cd2Qty;
+            var cd3Total = 41.99*cd3Qty;
+
+            var subtotal = cd1Total +cd2Total+cd3Total;
+            var tax = subtotal*6/100;
+            var total = subtotal + tax;
+            var finalTotal = parseInt(shipping)+total;
+
+            itemSold += parseInt(cd1Qty)+parseInt(cd2Qty)+parseInt(cd3Qty);
+            companyProfit += (4*cd1Qty)+(11*cd2Qty)+(12*cd3Qty);
+
+            build += `<div class="card">`;
+            build += `  <h1>Name: ${name} </h1>`;
+
+            build += `  <h2>CD Name: Lucy Nelson's Greatest Hits </h2>`;
+            build += `  <p>Quantitiy: ${cd1Qty} </p>`;
+            build += `  <p>Unit Cost: $9.99 </p>`;
+            build += `  <p>List Price: $13.99 </p>`;
+            build += `  <p>Profit Per Unit: $4.00 </p>`;
+            build += `  <p>Total List Price: ${cd1Total} </p>`;
+
+            build += `  <h2>CD Name: Barry Cuda & The Sharks Live </h2>`;
+            build += `  <p>Quantitiy: ${cd2Qty} </p>`;
+            build += `  <p>Unit Cost: $26.99 </p>`;
+            build += `  <p>List Price: $37.99 </p>`;
+            build += `  <p>Profit Per Unit: $11.00 </p>`;
+            build += `  <p>Total List Price: ${cd2Total} </p>`;
+
+            build += `  <h2>CD Name: Busta Move Boogies  </h2>`;
+            build += `  <p>Quantitiy: ${cd3Qty} </p>`;
+            build += `  <p>Unit Cost: $29.99 </p>`;
+            build += `  <p>List Price: $41.99 </p>`;
+            build += `  <p>Profit Per Unit: $12.00 </p>`;
+            build += `  <p>Total List Price: ${cd3Total} </p>`;
+
+            build += ` <hr>`;
+            build += ` <p>Order Subtotal: ${subtotal} </p>`;
+            build += ` <p>Sales Tax(6%): ${tax}</p>`;
+            build += ` <p>Order Total: ${total}</p>`;
+            build += ` <p>Shipping Fees: ${shipping}</p>`;
+            build += ` <p>Final Total: ${finalTotal}</p>`;
+            build += `</div>`; 
+            output.innerHTML=build;
+
+            //buildP += `<div class="card">`;
+            //buildP += ` <h3>Cumulative Day's Order(Total Quantity Sold): ${itemSold} </h3>`;
+            //buildP += ` <h3> Cumulative Day's Profit: ${companyProfit} </h3>`;
+            //buildP +=`</div>`;
+            profit.innerHTML=`<div class="card"><h3>Cumulative Day's Order(Total Quantity Sold): ${itemSold} </h3><h3> Cumulative Day's Profit: ${companyProfit} </h3></div>`; 
+            
+        }
+        
+    
+    
+    
+    </script>
+
+    <body>
+        Name <input type="text" id ="name"><br>
+        Lucy Nelson's Greatest Hits <input type="text" id="cd1Qty"><br>
+        Barry Cuda & The Sharks Live <input type="text" id="cd2Qty"><br>
+        Busta Move Boogies <input type="text" id ="cd3Qty"><br>
+        Shipping Cost <input type="text" id="shipping"><br>
+        <input type="button" onclick="buy()" value=Buy>
+        <div id="output"></div>
+        <div id="profit"></div>
+
+    </body>
+</html>
